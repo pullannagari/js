@@ -1,3 +1,4 @@
+  
 var a;
 console.log(a);
 a = 10;
@@ -342,3 +343,67 @@ function demoDesParam({min, max}){
     return min+max/2;   
 }
 console.log(demoDesParam(desparamex));
+
+//String Template Literals
+const testperson = {
+    name:"abcd",
+    age:25
+};
+const message = `Hello I am ${testperson.name}
+I am ${testperson.age} years old`;//write multi line strings with back quote
+console.log(message);
+
+//simplify the object 
+const returnSimpleObject = (name,gender,age) => {
+    return {
+        name:name,
+        gender:gender,
+        age:age
+    };
+}
+console.log(returnSimpleObject("Sudhir","Male","31"));
+//the below code does the same
+const returnSimpleObjectTwo = (name,gender,age) => ({name,gender,age});
+console.log(returnSimpleObjectTwo("Sudhir","Male","31"));
+
+//simpler way to define functions inside the objects
+const car = {
+    name:"Merc",
+    gear:2,
+    setGear: function(newGear){
+        this.gear = newGear
+    }
+}
+car.setGear(3);
+console.log(car.gear);
+//below code gives the same result
+const newcar = {
+    name:"Merc",
+    gear:2,
+    setGear(newGear){
+        this.gear = newGear
+    }
+}
+newcar.setGear(3);
+console.log(newcar.gear);
+
+//class in ES6
+function classDemo(){
+    class ThermoStat{
+        constructor(temp=10){
+            this._temp=5/9*(temp-32);//private variables start with _ (underscore)
+        }
+        get Temp(){
+            return this._temp;
+        }
+        set Temp(updatedTemp){
+            this._temp = 5/9*(updatedTemp-32);
+        }
+    }
+    return ThermoStat;
+}
+const TST = classDemo();//returns class definition
+const ts = new TST();//initiate class 
+console.log(ts.Temp);
+ts.Temp = 20;
+console.log(ts.Temp);
